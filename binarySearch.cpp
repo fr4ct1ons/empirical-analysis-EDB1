@@ -1,26 +1,30 @@
 #include<iostream>
-#include<cstdlib>
 
 int *myBsearch(int *searchVal, int *first, int *last){
-	int *middle = first + ((last - first)/2);
-	while(first != last){
+	last = last - 1;
+	int *middle = first + ((last-1 - first)/2);
+	while(*first != *last){
+		
 		if(*searchVal < *middle)
 		{
 			last = middle;
-			middle = first + ((last - first)/2);
+			middle = first + ((last-1 - first)/2);
 		}
 		else if(*searchVal > *middle)
 		{
-			first = middle;
-			middle = first + ((last - first)/2);
+			first = middle+1;
+			middle = first + ((last-1 - first)/2);
 		}
-		else
+		if(*searchVal == *middle)
 		{
 			return middle;
 		}
+		//std::cout << *first << " " << *middle << " " << *last << std::endl;
 	}
 	return searchVal;
 }
+
+//./a.out (tamanho do array) (valor a buscar)
 
 int main(int argc, char const *argv[])
 {
@@ -39,7 +43,7 @@ int main(int argc, char const *argv[])
 
 	int *searchRes = myBsearch(&value, &testVec[0], &testVec[n]);
 	if(&value == searchRes){
-		std::cout << "Code does not work!" << std::endl;
+		std::cout << "Value not found!" << std::endl;
 	}
 	else{
 		std::cout << "Found " << value << " at array position " << *searchRes << std::endl; 
