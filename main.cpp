@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
 		//std::cout << testVec[i] << std::endl;
 	}
 
-	int *searchRes = myTrnSearch(&value, &testVec[0], &testVec[n]);
+	int *searchRes = myJmpSearch(&value, &testVec[0], &testVec[n]);
 	if(&value == searchRes){
 		std::cout << "Value not found!" << std::endl;
 	}

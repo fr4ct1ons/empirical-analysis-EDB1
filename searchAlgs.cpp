@@ -109,3 +109,32 @@ int *myBinSearch(int *searchVal, int *first, int *last){
 	}
 	return searchVal;
 }
+
+int *myJmpSearch(int *searchVal, int *first, int *last, int jumpVal){
+	last = last - 1;
+	int step = jumpVal;
+	while(std::distance(first, (first + jumpVal)) < std::distance(first, last)){
+		std::cout << jumpVal << std::endl;
+		if(*(first + jumpVal) == *searchVal)
+		{
+			return first + jumpVal;
+		}
+		else if(*searchVal > *(first + jumpVal))
+		{
+			jumpVal += step;
+		}
+		else if(*searchVal < *(first + jumpVal))
+		{
+			jumpVal -= step;
+			std::cout << jumpVal << std::endl;
+			return myLinSearch(searchVal, (first + jumpVal), (first + jumpVal + step));
+		}
+	}
+	
+	jumpVal -= step;
+	int *buffer = myLinSearch(searchVal, (first + jumpVal), last + 1);
+	if(searchVal != buffer && *searchVal == *buffer){
+		return buffer;
+	}
+	return searchVal;
+}
