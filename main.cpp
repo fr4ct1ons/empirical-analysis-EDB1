@@ -2,7 +2,7 @@
 #include"searchAlgs.h"
 #include<chrono>
 
-//./a.out (tamanho do array) (valor a buscar) (tipo de busca {"bin", "lin", "jmp", trn"})
+//./a.out (tamanho do array) (valor a buscar) (tipo de busca {"itrbin", "itrlin", "jmp", "itrtrn"})
 
 int main(int argc, char const *argv[])
 {
@@ -47,27 +47,51 @@ int main(int argc, char const *argv[])
 	int *searchRes;
 	std::chrono::nanoseconds methodExecDuration;
 
-	if(searchToUse == "bin")
+	if(searchToUse == "itrbin")
 	{
-		std::cout << "Starting binary search. Looking for value " << value << " in an array with size " << n << "." << std::endl;
+		std::cout << "Starting iterative binary search. Looking for value " << value << " in an array with size " << n << "." << std::endl;
 		auto startTime = std::chrono::high_resolution_clock::now();
-		searchRes = myBinSearch(&value, &testVec[0], &testVec[n]);
+		searchRes = myItrBinSearch(&value, &testVec[0], &testVec[n]);
 		auto stopTime = std::chrono::high_resolution_clock::now();
 		methodExecDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(stopTime - startTime);
 	}
-	else if(searchToUse == "lin")
+	else if(searchToUse == "itrlin")
 	{
-		std::cout << "Starting linear search. Looking for value " << value << " in an array with size " << n << "." << std::endl;
+		std::cout << "Starting iterative linear search. Looking for value " << value << " in an array with size " << n << "." << std::endl;
 		auto startTime = std::chrono::high_resolution_clock::now();
-		searchRes = myLinSearch(&value, &testVec[0], &testVec[n]);
+		searchRes = myItrLinSearch(&value, &testVec[0], &testVec[n]);
 		auto stopTime = std::chrono::high_resolution_clock::now();
 		methodExecDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(stopTime - startTime);
 	}
-	else if(searchToUse == "trn")
+	else if(searchToUse == "itrtrn")
 	{
-		std::cout << "Starting ternary search. Looking for value " << value << " in an array with size " << n << "." << std::endl;
+		std::cout << "Starting iterative ternary search. Looking for value " << value << " in an array with size " << n << "." << std::endl;
 		auto startTime = std::chrono::high_resolution_clock::now();
-		searchRes = myTrnSearch(&value, &testVec[0], &testVec[n]);
+		searchRes = myItrTrnSearch(&value, &testVec[0], &testVec[n]);
+		auto stopTime = std::chrono::high_resolution_clock::now();
+		methodExecDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(stopTime - startTime);
+	}
+	else if(searchToUse == "recbin")
+	{
+		std::cout << "Starting recursive binary search. Looking for value " << value << " in an array with size " << n << "." << std::endl;
+		auto startTime = std::chrono::high_resolution_clock::now();
+		searchRes = myRecBinSearch(&value, &testVec[0], &testVec[n]);
+		auto stopTime = std::chrono::high_resolution_clock::now();
+		methodExecDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(stopTime - startTime);
+	}
+	else if(searchToUse == "reclin")
+	{
+		std::cout << "Starting recursive linear search. Looking for value " << value << " in an array with size " << n << "." << std::endl;
+		auto startTime = std::chrono::high_resolution_clock::now();
+		searchRes = myRecLinSearch(&value, &testVec[0], &testVec[n]);
+		auto stopTime = std::chrono::high_resolution_clock::now();
+		methodExecDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(stopTime - startTime);
+	}
+	else if(searchToUse == "rectrn")
+	{
+		std::cout << "Starting recursive ternary search. Looking for value " << value << " in an array with size " << n << "." << std::endl;
+		auto startTime = std::chrono::high_resolution_clock::now();
+		searchRes = myRecTrnSearch(&value, &testVec[0], &testVec[n]);
 		auto stopTime = std::chrono::high_resolution_clock::now();
 		methodExecDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(stopTime - startTime);
 	}
