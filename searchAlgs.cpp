@@ -6,7 +6,7 @@ int *myTrnSearch(int *searchVal, int *first, int *last){
 	int *t1 = first + ((last - first)/3);
 	int *t2 = first + ((last - first)/3) * 2;
 	while(*first != *last){
-		std::cout << " Start Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
+		//std::cout << " Start Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
 		if(*searchVal == *t1)
 		{
 			return t1;
@@ -51,7 +51,7 @@ int *myTrnSearch(int *searchVal, int *first, int *last){
 		{
 			return searchVal;
 		}
-		std::cout << " End Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
+		//std::cout << " End Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
 	}
 	if(*searchVal == *t1)
 		{
@@ -114,7 +114,7 @@ int *myJmpSearch(int *searchVal, int *first, int *last, int jumpVal){
 	last = last - 1;
 	int step = jumpVal;
 	while(std::distance(first, (first + jumpVal)) < std::distance(first, last)){
-		std::cout << jumpVal << std::endl;
+		//std::cout << jumpVal << std::endl;
 		if(*(first + jumpVal) == *searchVal)
 		{
 			return first + jumpVal;
@@ -126,7 +126,7 @@ int *myJmpSearch(int *searchVal, int *first, int *last, int jumpVal){
 		else if(*searchVal < *(first + jumpVal))
 		{
 			jumpVal -= step;
-			std::cout << jumpVal << std::endl;
+			//std::cout << jumpVal << std::endl;
 			return myLinSearch(searchVal, (first + jumpVal), (first + jumpVal + step));
 		}
 	}
