@@ -149,7 +149,7 @@ int *myRecTrnSearch(int *searchVal, int *first, int *last){
 }
 
 int *myRecLinSearch(int *searchVal, int *first, int *last){
-	last = last - 1;
+	//last = last - 1;
 	if(first != last)
 	{
 		if(*first == *searchVal)
@@ -158,7 +158,7 @@ int *myRecLinSearch(int *searchVal, int *first, int *last){
 		}
 		else
 		{
-			return myRecBinSearch(searchVal, first + 1, last + 1);
+			return myRecLinSearch(searchVal, first + 1, last);
 		}
 	}
 	else
