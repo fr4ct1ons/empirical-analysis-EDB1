@@ -110,6 +110,12 @@ int main(int argc, char const *argv[])
 		auto stopTime = std::chrono::high_resolution_clock::now();
 		methodExecDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(stopTime - startTime);
 	}
+	else
+	{
+		std::cout << "Invalid search type! Aborting program." << std::endl;
+		return 0;
+	}
+	
 	
 	if(&value == searchRes){
 		std::cout << "Value not found!" << std::endl;
@@ -118,7 +124,7 @@ int main(int argc, char const *argv[])
 		std::cout << "Found " << value << " at array position " << *searchRes << std::endl; 
 	}
 
-	std::cout << "Method exection time: " << methodExecDuration.count() << " nanoseconds" << std::endl;
+	std::cout << "Method execution time: " << methodExecDuration.count() << " nanoseconds" << std::endl;
 	
 	return 0;
 }

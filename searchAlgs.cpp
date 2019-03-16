@@ -203,29 +203,47 @@ int *myFibSearch(int *searchVal, int *first, int *last){
 	// Determine the first number that is greater than or equal to the array's size.
 	int fib1 = 1, fib2 = 1, fib3 = 2;
 	int vecSize = std::distance(first, last) - 1;
-	while(fib2 < vecSize){
+	int offset = 0, i;
+
+	while(fib3 < vecSize){
 		fib1 = fib2;
 		fib2 = fib3;
 		fib3 = fib3 + fib1;
 	}
 	
 	while(fib3 > 1){
-		if(*searchVal == *(first + fib1)){
-			return first + fib1;
+		//std::cout << fib3 << " " << fib2 << " " << fib1 << std::endl;
+
+		if((offset + fib1) <= vecSize)
+			i = (offset + fib1);
+		else
+			i = vecSize;
+		
+		if(*searchVal > *(first + i))
+		{
+			fib3 = fib2;
+			fib2 = fib1;
+			fib1 = fib3 - fib2;
+			offset = i;
 		}
-		else if(*searchVal < *(first + fib1)){
+		else if(*searchVal < *(first + i))
+		{
 			fib3 = fib1;
 			fib2 = fib2 - fib1;
 			fib1 = fib3 - fib2;
 			
 		}
-		else{
-			fib3 = fib2;
-			fib2 = fib1;
-			fib1 = fib3 - fib2;
+		else
+		{
+			return first + i;
 		}
 	}
 
+	if(*first == *searchVal){
+		return first;
+	}
+
+	//std::cout << fib3 << " " << fib2 << " " << fib1 << std::endl;
 	return searchVal;
 }
 
