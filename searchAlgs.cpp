@@ -199,6 +199,36 @@ int *myRecBinSearch(int *searchVal, int *first, int *last){
 
 
 
+int *myFibSearch(int *searchVal, int *first, int *last){
+	// Determine the first number that is greater than or equal to the array's size.
+	int fib1 = 1, fib2 = 1, fib3 = 2;
+	int vecSize = std::distance(first, last) - 1;
+	while(fib2 < vecSize){
+		fib1 = fib2;
+		fib2 = fib3;
+		fib3 = fib3 + fib1;
+	}
+	
+	while(fib3 > 1){
+		if(*searchVal == *(first + fib1)){
+			return first + fib1;
+		}
+		else if(*searchVal < *(first + fib1)){
+			fib3 = fib1;
+			fib2 = fib2 - fib1;
+			fib1 = fib3 - fib2;
+			
+		}
+		else{
+			fib3 = fib2;
+			fib2 = fib1;
+			fib1 = fib3 - fib2;
+		}
+	}
+
+	return searchVal;
+}
+
 int *myJmpSearch(int *searchVal, int *first, int *last, int jumpVal){
 	last = last - 1;
 	int step = jumpVal;

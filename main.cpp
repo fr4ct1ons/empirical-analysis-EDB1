@@ -95,6 +95,13 @@ int main(int argc, char const *argv[])
 		auto stopTime = std::chrono::high_resolution_clock::now();
 		methodExecDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(stopTime - startTime);
 	}
+	else if(searchToUse == "fib"){
+		std::cout << "Starting Fibonacci search. Looking for value " << value << " in an array with size " << n << "." << std::endl;
+		auto startTime = std::chrono::high_resolution_clock::now();
+		searchRes = myFibSearch(&value, &testVec[0], &testVec[n]);
+		auto stopTime = std::chrono::high_resolution_clock::now();
+		methodExecDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(stopTime - startTime);
+	}
 	else if(searchToUse == "jmp")
 	{
 		std::cout << "Starting jump search. Looking for value " << value << " in an array with size " << n << "." << std::endl;
