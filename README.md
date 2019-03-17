@@ -23,4 +23,4 @@ Feel free to use and edit the searchAlgs.cpp files for your own purposes at will
 Currently, the program has no known errors.
 
 ## Contact
-You can contact me at twitter.com/fr4ct1ons and at github.com/fr4ct1ons.
+You can contact me at https://twitter.com/fr4ct1ons and at https://github.com/fr4ct1ons.
