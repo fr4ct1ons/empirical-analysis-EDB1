@@ -83,7 +83,7 @@ int main(int argc, char const *argv[])
 	{
 		std::cout << "Starting recursive linear search. Looking for value " << value << " in an array with size " << n << "." << std::endl;
 		auto startTime = std::chrono::high_resolution_clock::now();
-		searchRes = myRecLinSearch(&value, &testVec[0], &testVec[n]);
+		searchRes = myRecLinSearch(&value, &testVec[0], &testVec[n - 1]);
 		auto stopTime = std::chrono::high_resolution_clock::now();
 		methodExecDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(stopTime - startTime);
 	}

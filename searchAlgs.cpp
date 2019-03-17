@@ -6,7 +6,7 @@ int *myItrTrnSearch(int *searchVal, int *first, int *last){
 	int *t1 = first + ((last - first)/3);
 	int *t2 = first + (last - t1);
 	while(*first != *last){
-		std::cout << " Start Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
+		//std::cout << " Start Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
 		if(*searchVal == *t1)
 		{
 			return t1;
@@ -46,7 +46,7 @@ int *myItrTrnSearch(int *searchVal, int *first, int *last){
 		//std::cout << " End Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
 	}
 
-	std::cout << " End Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
+	//std::cout << " End Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
 	if(*searchVal == *t1)
 		{
 			return t1;
@@ -103,7 +103,7 @@ int *myRecTrnSearch(int *searchVal, int *first, int *last){
 	int *t1 = first + ((last - first)/3);
 	int *t2 = first + (last - t1);
 	if(*first != *last){
-		std::cout << " Start Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
+		//std::cout << " Start Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
 		if(*searchVal == *t1)
 		{
 			return t1;
@@ -136,7 +136,7 @@ int *myRecTrnSearch(int *searchVal, int *first, int *last){
 		//std::cout << " End Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
 	}
 
-	std::cout << " End Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
+	//std::cout << " End Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
 	if(*searchVal == *t1)
 		{
 			return t1;
@@ -150,6 +150,7 @@ int *myRecTrnSearch(int *searchVal, int *first, int *last){
 
 int *myRecLinSearch(int *searchVal, int *first, int *last){
 	//last = last - 1;
+	std::cout << *first << " " << *last << std::endl;
 	if(first != last)
 	{
 		if(*first == *searchVal)
