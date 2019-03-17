@@ -1,12 +1,26 @@
 #include "searchAlgs.h"
 #include <iostream>
 
+//! Search Algorithms
+
+/*!
+ * This .cpp file includes the implementation of various search algorithms.
+ * Written by fr4ct1ons. Contact: https://twitter.com/fr4ct1ons
+ * 
+ * Every method here will require three variables, with the jump search algorithm being an exception.
+ * searchVal is the pointer of the value to be searched.
+ * first is the pointer of the first value in the search range.
+ * last is the pointer of the last value in the search range.
+ * The return value will be either the pointer of the value equal to searchVal or the pointer of a searchVal itself, indicating the search didn't find the requested value.
+*/
+
+//! Iterative Ternary Search
 int *myItrTrnSearch(int *searchVal, int *first, int *last){
 	last = last - 1;
 	int *t1 = first + ((last - first)/3);
 	int *t2 = first + (last - t1);
 	while(*first != *last){
-		//std::cout << " Start Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
+		
 		if(*searchVal == *t1)
 		{
 			return t1;
@@ -16,14 +30,12 @@ int *myItrTrnSearch(int *searchVal, int *first, int *last){
 			return t2;
 		}
 		
-		// Verifies if searchVal is in the first third
 		if(*searchVal >= *first && *searchVal < *t1)
 		{
 			last = t1 - 1;
 			t1 = first + ((last - first)/3);
 			t2 = first + ((last - first)/3) * 2;
 		}
-		// Verifies if searchVal is in the middle third
 		else if(*searchVal > *t1 && *searchVal < *t2)
 		{
 			first = t1 + 1;
@@ -31,22 +43,18 @@ int *myItrTrnSearch(int *searchVal, int *first, int *last){
 			t1 = first + ((last - first)/3);
 			t2 = first + ((last - first)/3) * 2;
 		}
-		// Verifies if searchVal is in the last third
 		else if(*searchVal > *t2 && *searchVal <= *last)
 		{
 			first = t2 + 1;
 			t1 = first + ((last - first)/3);
 			t2 = first + ((last - first)/3) * 2;
 		}
-		// If not in any of the thirds, then the value isn't in the array.
 		else
 		{
 			return searchVal;
 		}
-		//std::cout << " End Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
 	}
 
-	//std::cout << " End Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
 	if(*searchVal == *t1)
 		{
 			return t1;
@@ -58,6 +66,7 @@ int *myItrTrnSearch(int *searchVal, int *first, int *last){
 	return searchVal;
 }
 
+//! Iterative Linear Search
 int *myItrLinSearch(int *searchVal, int *first, int *last){
 	last = last - 1;
 	while(first <= last){
@@ -73,6 +82,7 @@ int *myItrLinSearch(int *searchVal, int *first, int *last){
 	return searchVal;
 }
 
+//! Iterative Binary Search
 int *myItrBinSearch(int *searchVal, int *first, int *last){
 	last = last - 1;
 	int *middle = first + ((last - first)/2);
@@ -97,13 +107,12 @@ int *myItrBinSearch(int *searchVal, int *first, int *last){
 }
 
 
-
+//! Recursive Ternary Search
 int *myRecTrnSearch(int *searchVal, int *first, int *last){
 	last = last - 1;
 	int *t1 = first + ((last - first)/3);
 	int *t2 = first + (last - t1);
 	if(*first != *last){
-		//std::cout << " Start Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
 		if(*searchVal == *t1)
 		{
 			return t1;
@@ -113,30 +122,24 @@ int *myRecTrnSearch(int *searchVal, int *first, int *last){
 			return t2;
 		}
 		
-		// Verifies if searchVal is in the first third
 		if(*searchVal >= *first && *searchVal < *t1)
 		{
 			return myRecTrnSearch(searchVal, first, t1);
 		}
-		// Verifies if searchVal is in the middle third
 		else if(*searchVal > *t1 && *searchVal < *t2)
 		{
 			return myRecTrnSearch(searchVal, t1 + 1, t2 );
 		}
-		// Verifies if searchVal is in the last third
 		else if(*searchVal > *t2 && *searchVal <= *last)
 		{
 			return myRecTrnSearch(searchVal, t2 + 1, last + 1);
 		}
-		// If not in any of the thirds, then the value isn't in the array.
 		else
 		{
 			return searchVal;
 		}
-		//std::cout << " End Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
 	}
 
-	//std::cout << " End Iteration - First: " << *first << " T1: " << *t1 << " T2: " << *t2 << " Last: " << *last << std::endl;
 	if(*searchVal == *t1)
 		{
 			return t1;
@@ -148,8 +151,12 @@ int *myRecTrnSearch(int *searchVal, int *first, int *last){
 	return searchVal;
 }
 
+//! Recursive Linear Search
+/*!
+ * WARNING! This method WILL NOT work with arrays that are too big. It is prone to segfault.
+ * Only implemented for testing purposes.
+ */
 int *myRecLinSearch(int *searchVal, int *first, int *last){
-	//last = last - 1;
 	std::cout << *first << " " << *last << std::endl;
 	if(first != last)
 	{
@@ -168,10 +175,10 @@ int *myRecLinSearch(int *searchVal, int *first, int *last){
 	}
 }
 
+//! Recursive Binary Search
 int *myRecBinSearch(int *searchVal, int *first, int *last){
 	last = last - 1;
-	int *middle = first + ((last - first)/2);
-	//std::cout << *first << " " << *middle << " " << *last << std::endl;	
+	int *middle = first + ((last - first)/2);	
 
 	if(*searchVal == *middle)
 	{
@@ -182,12 +189,10 @@ int *myRecBinSearch(int *searchVal, int *first, int *last){
 	{
 		if(*searchVal < *middle)
 		{
-			//last = middle-1;
 			return myRecBinSearch(searchVal, first, middle);
 		}
 		else if(*searchVal > *middle)
 		{
-			//first = middle+1;
 			return myRecBinSearch(searchVal, middle+1, last+1);
 		}
 
@@ -199,9 +204,8 @@ int *myRecBinSearch(int *searchVal, int *first, int *last){
 }
 
 
-
+//! Fibonacci Search
 int *myFibSearch(int *searchVal, int *first, int *last){
-	// Determine the first number that is greater than or equal to the array's size.
 	int fib1 = 1, fib2 = 1, fib3 = 2;
 	int vecSize = std::distance(first, last) - 1;
 	int offset = 0, i;
@@ -213,7 +217,6 @@ int *myFibSearch(int *searchVal, int *first, int *last){
 	}
 	
 	while(fib3 > 1){
-		//std::cout << fib3 << " " << fib2 << " " << fib1 << std::endl;
 
 		if((offset + fib1) <= vecSize)
 			i = (offset + fib1);
@@ -244,15 +247,18 @@ int *myFibSearch(int *searchVal, int *first, int *last){
 		return first;
 	}
 
-	//std::cout << fib3 << " " << fib2 << " " << fib1 << std::endl;
 	return searchVal;
 }
 
-int *myJmpSearch(int *searchVal, int *first, int *last, int jumpVal){
+//! Jump Search
+/*!
+ * Note that unlike other methods, this one takes an extra parameter, which is jumpVal.
+ * jumpVal is the size of the steps that the algorithm will make.
+ */
+int *myJmpSearch(int *searchVal, int *first, int *last, int jumpVal=10){
 	last = last - 1;
 	int step = jumpVal;
 	while(std::distance(first, (first + jumpVal)) < std::distance(first, last)){
-		//std::cout << jumpVal << std::endl;
 		if(*(first + jumpVal) == *searchVal)
 		{
 			return first + jumpVal;
@@ -264,7 +270,6 @@ int *myJmpSearch(int *searchVal, int *first, int *last, int jumpVal){
 		else if(*searchVal < *(first + jumpVal))
 		{
 			jumpVal -= step;
-			//std::cout << jumpVal << std::endl;
 			return myItrLinSearch(searchVal, (first + jumpVal), (first + jumpVal + step));
 		}
 	}
