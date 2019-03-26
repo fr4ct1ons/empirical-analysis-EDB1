@@ -1,7 +1,7 @@
 # empirical-analysis-EDB1
 Repository for a college project, about an empirical analysis on various search algorithms' speed.
 
-Author: Gabriel Paes Landim de Lucena (fr4ct1ons)  
+Author: Gabriel "fr4ct1ons" Lucena (that's me!)  
 Subject: Estrutura de Dados Básicas I (Basic Data Structures I)  
 Teacher: Selan Rodrigues Santos  
 
@@ -9,12 +9,15 @@ Teacher: Selan Rodrigues Santos
 In this project, we had to write various search algorithms and compare their efficiency with one another. We had to write algorithms for iterative and recursive linear, binary and ternary search, jump search and Fibonacci search.  
 We also had to answer a few questions, such as which linear algorithm works best between linear and jump search and the Fibonacci search algorithm's worst case.
 
-## Installation
+## Installation - Linux
+0. Make sure you have the GNU C++ compiler installed. 
 1. Download the files  
 2. On the terminal, move to the directory you put the project's files at  
-3. Run the program using `./searchAlgsTester`  
+3. Again, on the terminal, compile the program by copy pasting the following command:  
+```g++ main.cpp searchAlgs.cpp -std=c++11 -o searchAlgsTester```  
+4. Run the program by typing the command `./searchAlgsTester`  
 
-*You can also run the program like `./searchAlgsTester <size of the array> <value to search> <search algorithm to use> `   
+*You can also run the program like* `./searchAlgsTester <size of the array> <value to search> <search algorithm to use> `  
 
 ## Tech report
 In the Análise Empírica.pdf file is the tech report of the analysis. In it you can find the the results of the analysis, the methodology and materials used as well as a discussion of the results.  
