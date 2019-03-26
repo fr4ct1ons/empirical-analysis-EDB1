@@ -1,5 +1,4 @@
 #include "searchAlgs.h"
-#include <iostream>
 
 //! Search Algorithms
 
@@ -157,7 +156,7 @@ int *myRecTrnSearch(int *searchVal, int *first, int *last){
  * Only implemented for testing purposes.
  */
 int *myRecLinSearch(int *searchVal, int *first, int *last){
-	std::cout << *first << " " << *last << std::endl;
+	//std::cout << *first << " " << *last << std::endl;
 	if(first != last)
 	{
 		if(*first == *searchVal)
